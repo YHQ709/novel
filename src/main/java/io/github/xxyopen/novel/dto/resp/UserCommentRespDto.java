@@ -17,11 +17,17 @@ import java.time.LocalDateTime;
 @Builder
 public class UserCommentRespDto {
 
+    @Schema(description = "评论ID")
+    private Long id;
+
     @Schema(description = "评论内容")
     private String commentContent;
 
     @Schema(description = "评论小说封面")
     private String commentBookPic;
+
+    @Schema(description = "评论小说ID")
+    private String commentBookId;
 
     @Schema(description = "评论小说")
     private String commentBook;

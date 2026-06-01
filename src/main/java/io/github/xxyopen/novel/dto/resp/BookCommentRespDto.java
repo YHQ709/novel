@@ -32,6 +32,9 @@ public class BookCommentRespDto {
         @Schema(description = "评论ID")
         private Long id;
 
+        @Schema(description = "回复数量")
+        private Integer replyCount;
+
         @Schema(description = "评论内容")
         private String commentContent;
 

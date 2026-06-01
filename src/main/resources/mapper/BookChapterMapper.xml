@@ -2,4 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="io.github.xxyopen.novel.dao.mapper.BookChapterMapper">
 
+    <!-- 查询小说的第一章ID -->
+    <select id="selectFirstChapterId" resultType="java.lang.Long">
+        SELECT id
+        FROM book_chapter
+        WHERE book_id = #{bookId}
+          AND chapter_num = 0
+            LIMIT 1
+    </select>
+
 </mapper>

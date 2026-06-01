@@ -62,6 +62,7 @@ public class BookInfoCacheManager {
             .bookStatus(bookInfo.getBookStatus())
             .authorId(bookInfo.getAuthorId())
             .authorName(bookInfo.getAuthorName())
+            .workDirection(bookInfo.getWorkDirection())
             .categoryId(bookInfo.getCategoryId())
             .categoryName(bookInfo.getCategoryName())
             .commentCount(bookInfo.getCommentCount())

@@ -96,9 +96,16 @@ public class CacheConsts {
     public static final String AUTHOR_INFO_CACHE_NAME = "authorInfoCache";
 
     /**
+     * 用户购买记录缓存名称
+     */
+    public static final String USER_PURCHASE_CACHE_NAME = "userPurchaseCache";
+
+    /**
      * 缓存配置常量
      */
     public enum CacheEnum {
+
+        USER_PURCHASE_CACHE(2, USER_PURCHASE_CACHE_NAME, 60 * 60 * 24 * 7, 10000),
 
         HOME_BOOK_CACHE(0, HOME_BOOK_CACHE_NAME, 60 * 60 * 24, 1),
 
@@ -114,7 +121,7 @@ public class CacheConsts {
 
         BOOK_CATEGORY_LIST_CACHE(0, BOOK_CATEGORY_LIST_CACHE_NAME, 0, 2),
 
-        BOOK_INFO_CACHE(0, BOOK_INFO_CACHE_NAME, 60 * 60 * 18, 500),
+        BOOK_INFO_CACHE(0, BOOK_INFO_CACHE_NAME, 60 * 10, 500),
 
         BOOK_CHAPTER_CACHE(0, BOOK_CHAPTER_CACHE_NAME, 60 * 60 * 6, 5000),
 

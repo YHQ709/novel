@@ -3,10 +3,7 @@ package io.github.xxyopen.novel.service;
 import io.github.xxyopen.novel.core.common.req.PageReqDto;
 import io.github.xxyopen.novel.core.common.resp.PageRespDto;
 import io.github.xxyopen.novel.core.common.resp.RestResp;
-import io.github.xxyopen.novel.dto.req.BookAddReqDto;
-import io.github.xxyopen.novel.dto.req.ChapterAddReqDto;
-import io.github.xxyopen.novel.dto.req.ChapterUpdateReqDto;
-import io.github.xxyopen.novel.dto.req.UserCommentReqDto;
+import io.github.xxyopen.novel.dto.req.*;
 import io.github.xxyopen.novel.dto.resp.*;
 
 import java.security.NoSuchAlgorithmException;
@@ -125,9 +122,9 @@ public interface BookService {
      * 小说最新评论查询
      *
      * @param bookId 小说ID
-     * @return 小说最新评论数据
+     * @return 小说最新评论分页数据
      */
-    RestResp<BookCommentRespDto> listNewestComments(Long bookId);
+    RestResp<PageRespDto<BookCommentRespDto.CommentInfo>> listNewestComments(Long bookId, PageReqDto pageReqDto);
 
     /**
      * 删除评论
@@ -155,6 +152,23 @@ public interface BookService {
      * @return void
      */
     RestResp<Void> saveBook(BookAddReqDto dto);
+
+    /**
+     * 小说信息更新
+     *
+     * @param bookId 小说ID
+     * @param dto       更新内容
+     * @return void
+     */
+    RestResp<Void> updateBook(Long bookId, BookUpdateReqDto dto);
+
+    /**
+     * 小说章节删除
+     *
+     * @param bookId 小说ID
+     * @return void
+     */
+    RestResp<Void> deleteBook(Long bookId);
 
     /**
      * 小说章节信息保存
@@ -214,4 +228,36 @@ public interface BookService {
      * @return void
      */
     RestResp<Void> updateBookChapter(Long chapterId, ChapterUpdateReqDto dto);
+
+    /**
+     * 小说评论详情查询
+     *
+     * @param commentId 评论ID
+     * @return 小说评论详情数据
+     */
+    RestResp<BookCommentDetailRespDto> getCommentDetail(Long commentId);
+
+    /**
+     * 小说最新评论回复查询
+     *
+     * @param commentId 评论ID
+     * @return 小说最新评论回复分页数据
+     */
+    RestResp<PageRespDto<BookCommentReplyRespDto.CommentReplyInfo>> listNewestCommentReply(Long commentId, PageReqDto dto);
+
+    /**
+     * 发表评论回复
+     *
+     * @param dto 评论回复相关 DTO
+     * @return void
+     */
+    RestResp<Void> saveCommentReply(UserCommentReplyReqDto dto);
+
+    /**
+     * 购买VIP章节
+     *
+     * @param chapterId 章节ID
+     * @return VIP章节购买数据
+     */
+    RestResp<BookChapterBuyRespDto> buyBookVipChapter(Long chapterId);
 }

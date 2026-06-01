@@ -42,12 +42,12 @@ public class AuthorIncome implements Serializable {
     private LocalDate incomeMonth;
 
     /**
-     * 税前收入;单位：分
+     * 税前收入;单位：元
      */
     private Integer preTaxIncome;
 
     /**
-     * 税后收入;单位：分
+     * 税后收入;单位：元
      */
     private Integer afterTaxIncome;
 

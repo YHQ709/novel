@@ -11,6 +11,7 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -24,6 +25,7 @@ import java.util.Map;
 @EnableCaching
 @EnableScheduling
 @Slf4j
+@EnableAsync
 public class NovelApplication {
 
     public static void main(String[] args) {

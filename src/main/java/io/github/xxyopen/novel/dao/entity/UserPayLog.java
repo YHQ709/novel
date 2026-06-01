@@ -28,7 +28,7 @@ public class UserPayLog implements Serializable {
     private Long userId;
 
     /**
-     * 充值方式;0-支付宝 1-微信
+     * 充值方式;0-微信 1-支付宝
      */
     private Integer payChannel;
 
@@ -43,7 +43,7 @@ public class UserPayLog implements Serializable {
     private Integer amount;
 
     /**
-     * 充值商品类型;0-屋币 1-包年VIP
+     * 充值商品类型;0-星币 1-包年VIP
      */
     private Integer productType;
 
@@ -53,7 +53,7 @@ public class UserPayLog implements Serializable {
     private Long productId;
 
     /**
-     * 充值商品名;示例值：屋币
+     * 充值商品名;示例值：星币
      */
     private String productName;
 

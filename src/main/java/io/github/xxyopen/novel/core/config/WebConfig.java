@@ -47,6 +47,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(authInterceptor)
             // 拦截会员中心相关请求接口
             .addPathPatterns(ApiRouterConsts.API_FRONT_USER_URL_PREFIX + "/**",
+                // 拦截支付相关请求接口
+                ApiRouterConsts.API_FRONT_PAY_URL_PREFIX + "/**",
                 // 拦截作家后台相关请求接口
                 ApiRouterConsts.API_AUTHOR_URL_PREFIX + "/**",
                 // 拦截平台后台相关请求接口
@@ -54,13 +56,20 @@ public class WebConfig implements WebMvcConfigurer {
             // 放行登录注册相关请求接口
             .excludePathPatterns(ApiRouterConsts.API_FRONT_USER_URL_PREFIX + "/register",
                 ApiRouterConsts.API_FRONT_USER_URL_PREFIX + "/login",
-                ApiRouterConsts.API_ADMIN_URL_PREFIX + "/login")
+                ApiRouterConsts.API_ADMIN_URL_PREFIX + "/login",
+                ApiRouterConsts.API_FRONT_PAY_URL_PREFIX + "/alipay/notify",
+                ApiRouterConsts.API_FRONT_PAY_URL_PREFIX + "/alipay/return",
+                ApiRouterConsts.API_FRONT_PAY_URL_PREFIX + "/result")
             .order(2);
 
         // Token 解析拦截器
         registry.addInterceptor(tokenParseInterceptor)
             // 拦截小说内容查询接口，需要解析 token 以判断该用户是否有权阅读该章节（付费章节是否已购买）
-            .addPathPatterns(ApiRouterConsts.API_FRONT_BOOK_URL_PREFIX + "/content/*")
+            .addPathPatterns(ApiRouterConsts.API_FRONT_BOOK_URL_PREFIX + "/content/*",
+                    // 拦截购买VIP章节请求接口
+                    ApiRouterConsts.API_FRONT_BOOK_URL_PREFIX + "/buy_vip_chapter/*",
+                    // 拦截支付订单创建请求接口
+                    ApiRouterConsts.API_FRONT_PAY_URL_PREFIX + "/alipay/create")
             .order(3);
 
     }

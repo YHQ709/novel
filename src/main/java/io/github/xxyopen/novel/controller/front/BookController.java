@@ -1,14 +1,10 @@
 package io.github.xxyopen.novel.controller.front;
 
+import io.github.xxyopen.novel.core.common.req.PageReqDto;
+import io.github.xxyopen.novel.core.common.resp.PageRespDto;
 import io.github.xxyopen.novel.core.common.resp.RestResp;
 import io.github.xxyopen.novel.core.constant.ApiRouterConsts;
-import io.github.xxyopen.novel.dto.resp.BookCategoryRespDto;
-import io.github.xxyopen.novel.dto.resp.BookChapterAboutRespDto;
-import io.github.xxyopen.novel.dto.resp.BookChapterRespDto;
-import io.github.xxyopen.novel.dto.resp.BookCommentRespDto;
-import io.github.xxyopen.novel.dto.resp.BookContentAboutRespDto;
-import io.github.xxyopen.novel.dto.resp.BookInfoRespDto;
-import io.github.xxyopen.novel.dto.resp.BookRankRespDto;
+import io.github.xxyopen.novel.dto.resp.*;
 import io.github.xxyopen.novel.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -157,9 +153,39 @@ public class BookController {
      */
     @Operation(summary = "小说最新评论查询接口")
     @GetMapping("comment/newest_list")
-    public RestResp<BookCommentRespDto> listNewestComments(
-        @Parameter(description = "小说ID") Long bookId) {
-        return bookService.listNewestComments(bookId);
+    public RestResp<PageRespDto<BookCommentRespDto.CommentInfo>> listNewestComments(
+        @Parameter(description = "小说ID") Long bookId, PageReqDto pageReqDto) {
+        return bookService.listNewestComments(bookId, pageReqDto);
+    }
+
+    /**
+     * 小说评论详情查询接口
+     */
+    @Operation(summary = "小说评论详情查询接口")
+    @GetMapping("comment/{commentId}")
+    public RestResp<BookCommentDetailRespDto> getCommentDetail(
+            @Parameter(description = "评论ID") @PathVariable("commentId") Long commentId) {
+        return bookService.getCommentDetail(commentId);
+    }
+
+    /**
+     * 小说最新评论回复查询接口
+     */
+    @Operation(summary = "小说最新评论回复查询接口")
+    @GetMapping("comment/reply/newest_list")
+    public RestResp<PageRespDto<BookCommentReplyRespDto.CommentReplyInfo>> listNewestCommentReply(
+            @Parameter(description = "评论ID") Long commentId, PageReqDto pageReqDto) {
+        return bookService.listNewestCommentReply(commentId, pageReqDto);
+    }
+
+    /**
+     * 小说VIP章节购买接口
+     */
+    @Operation(summary = "小说VIP章节购买接口")
+    @PostMapping("buy_vip_chapter/{chapterId}")
+    public RestResp<BookChapterBuyRespDto> buyBookVipChapter(
+            @Parameter(description = "章节ID") @PathVariable("chapterId") Long chapterId) {
+        return bookService.buyBookVipChapter(chapterId);
     }
 
 }

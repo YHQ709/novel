@@ -1,12 +1,11 @@
 package io.github.xxyopen.novel.service;
 
+import io.github.xxyopen.novel.core.common.req.PageReqDto;
+import io.github.xxyopen.novel.core.common.resp.PageRespDto;
 import io.github.xxyopen.novel.core.common.resp.RestResp;
-import io.github.xxyopen.novel.dto.req.UserInfoUptReqDto;
-import io.github.xxyopen.novel.dto.req.UserLoginReqDto;
-import io.github.xxyopen.novel.dto.req.UserRegisterReqDto;
-import io.github.xxyopen.novel.dto.resp.UserInfoRespDto;
-import io.github.xxyopen.novel.dto.resp.UserLoginRespDto;
-import io.github.xxyopen.novel.dto.resp.UserRegisterRespDto;
+import io.github.xxyopen.novel.dto.req.*;
+import io.github.xxyopen.novel.dto.resp.*;
+
 
 /**
  * 会员模块 服务类
@@ -42,6 +41,15 @@ public interface UserService {
     RestResp<Void> saveFeedback(Long userId, String content);
 
     /**
+     * 分页查询反馈
+     *
+     * @param userId     反馈用户ID
+     * @param pageReqDto 分页参数
+     * @return 反馈分页列表数据
+     */
+    RestResp<PageRespDto<UserFeedbackRespDto>> listFeedbacks(Long userId, PageReqDto pageReqDto);
+
+    /**
      * 用户信息修改
      *
      * @param dto 用户信息
@@ -73,4 +81,62 @@ public interface UserService {
      * @return 用户信息
      */
     RestResp<UserInfoRespDto> getUserInfo(Long userId);
+
+    /**
+     * 分页查询用户书架列表
+     * @param userId 用户ID
+     * @return 用户书架分页列表数据
+     */
+    RestResp<PageRespDto<UserBookshelfRespDto>> listBookshelf(Long userId, PageReqDto pageReqDto);
+
+    /**
+     * 加入书架
+     *
+     * @param dto 书架相关 DTO
+     * @return void
+     */
+    RestResp<Void> addBookshelf(UserBookshelfReqDto dto);
+
+    /**
+     * 从书架移除
+     *
+     * @param userId 用户ID
+     * @param bookId 小说ID
+     * @return void
+     */
+    RestResp<Void> deleteBookshelf(Long userId, String bookId);
+
+    /**
+     * 修改密码
+     *
+     * @param dto 密码相关dto
+     * @return void
+     */
+    RestResp<Void> setPassword(UserPasswordReqDto dto);
+
+    /**
+     * 添加阅读历史
+     *
+     * @param dto 阅读历史相关 DTO
+     * @return void
+     */
+    RestResp<Void> addReadHistory(UserReadHistoryReqDto dto);
+
+    /**
+     * 分页查询充值记录
+     *
+     * @param userId     充值用户ID
+     * @param pageReqDto 分页参数
+     * @return 充值分页列表数据
+     */
+    RestResp<PageRespDto<UserPayLogRespDto>> listPayLogs(Long userId, PageReqDto pageReqDto);
+
+    /**
+     * 分页查询消费记录
+     *
+     * @param userId     消费用户ID
+     * @param pageReqDto 分页参数
+     * @return 消费分页列表数据
+     */
+    RestResp<PageRespDto<UserConsumeLogRespDto>> listConsumeLogs(Long userId, PageReqDto pageReqDto);
 }

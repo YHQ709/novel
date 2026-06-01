@@ -31,7 +31,7 @@ public class UserConsumeLog implements Serializable {
     private Long userId;
 
     /**
-     * 消费使用的金额;单位：屋币
+     * 消费使用的金额;单位：星币
      */
     private Integer amount;
 

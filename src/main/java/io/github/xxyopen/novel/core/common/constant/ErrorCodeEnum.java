@@ -65,6 +65,21 @@ public enum ErrorCodeEnum {
     USER_PASSWORD_ERROR("A0210", "用户密码错误"),
 
     /**
+     * 支付创建失败
+     */
+    PAY_CREATE_ERROR("A0401", "支付创建失败"),
+
+    /**
+     * 支付验证失败
+     */
+    PAY_VERIFY_ERROR("A0402", "支付验证失败"),
+
+    /**
+     * 支付记录不存在
+     */
+    PAY_NOT_EXIST("A0403", "支付记录不存在"),
+
+    /**
      * 二级宏观错误码，用户请求参数错误
      */
     USER_REQUEST_PARAM_ERROR("A0400", "用户请求参数错误"),
@@ -105,9 +120,40 @@ public enum ErrorCodeEnum {
     BOOK_NOT_FOUND("A2002", "小说ID不存在"),
 
     /**
+     * 评论不存在
+     */
+    USER_COMMENT_NOT_FOUND("A2003", "评论不存在"),
+
+    /**
+     * 章节不存在
+     */
+    BOOK_CHAPTER_NOT_FOUND("A2004", "章节不存在"),
+
+    /**
+     * 章节不是VIP章节
+     */
+    CHAPTER_NOT_VIP("A2005", "该章节不是VIP章节"),
+
+    /**
+     * 用户余额不足
+     */
+    USER_BALANCE_NOT_ENOUGH("A2006", "用户余额不足"),
+
+
+    /**
      * 作家发布异常
      */
     AUTHOR_PUBLISH("A3000", "作家发布异常"),
+
+    /**
+     * 作家收入更新失败
+     */
+    INCOME_UPDATE_FAIL("A3001", "作家收入更新失败"),
+
+    /**
+     * 作家收入明细更新失败
+     */
+    AUTHOR_INCOME_DETAIL_UPDATE_FAIL("A3002", "作家收入明细更新失败"),
 
     /**
      * 小说名已存在
@@ -142,7 +188,22 @@ public enum ErrorCodeEnum {
     /**
      * 一级宏观错误码，中间件服务出错
      */
-    MIDDLEWARE_SERVICE_ERROR("C0100", "中间件服务出错");
+    MIDDLEWARE_SERVICE_ERROR("C0100", "中间件服务出错"),
+
+    /**
+     * 两次输入密码不一致
+     */
+    USER_PASSWORD_CONFIRM_ERROR("A0212", "两次输入的密码不一致"),
+
+    /**
+     * 密码长度在6-20位之间
+     */
+    USER_PASSWORD_LENGTH_ERROR("A0213", "密码长度应在6-20位之间"),
+
+    /**
+     * 新密码不能与原密码相同
+     */
+    USER_NEW_PASSWORD_SAME("A0214", "新密码不能与原密码相同");
 
     /**
      * 错误码

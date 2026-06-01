@@ -1,5 +1,6 @@
 package io.github.xxyopen.novel.dto.req;
 
+import com.fasterxml.jackson.annotation.JsonRawValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,6 +35,7 @@ public class ChapterAddReqDto {
     @Schema(description = "章节内容", required = true)
     @NotBlank
     @Length(min = 50)
+    @JsonRawValue
     private String chapterContent;
 
     /**

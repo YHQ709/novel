@@ -6,13 +6,8 @@ import io.github.xxyopen.novel.core.common.resp.PageRespDto;
 import io.github.xxyopen.novel.core.common.resp.RestResp;
 import io.github.xxyopen.novel.core.constant.ApiRouterConsts;
 import io.github.xxyopen.novel.core.constant.SystemConfigConsts;
-import io.github.xxyopen.novel.dto.req.AuthorRegisterReqDto;
-import io.github.xxyopen.novel.dto.req.BookAddReqDto;
-import io.github.xxyopen.novel.dto.req.ChapterAddReqDto;
-import io.github.xxyopen.novel.dto.req.ChapterUpdateReqDto;
-import io.github.xxyopen.novel.dto.resp.BookChapterRespDto;
-import io.github.xxyopen.novel.dto.resp.BookInfoRespDto;
-import io.github.xxyopen.novel.dto.resp.ChapterContentRespDto;
+import io.github.xxyopen.novel.dto.req.*;
+import io.github.xxyopen.novel.dto.resp.*;
 import io.github.xxyopen.novel.service.AuthorService;
 import io.github.xxyopen.novel.service.BookService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,6 +18,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 作家后台-作家模块 API 控制器
@@ -130,6 +127,65 @@ public class AuthorController {
         @Parameter(description = "小说ID") @PathVariable("bookId") Long bookId,
         @ParameterObject PageReqDto dto) {
         return bookService.listBookChapters(bookId, dto);
+    }
+
+    /**
+     * 小说分类列表查询接口
+     */
+    @Operation(summary = "小说分类列表查询接口")
+    @GetMapping("book/category/list")
+    public RestResp<List<BookCategoryRespDto>> listCategory(
+            @Parameter(description = "作品方向", required = true) Integer workDirection) {
+        return bookService.listCategory(workDirection);
+    }
+
+    /**
+     * 小说信息查询接口
+     */
+    @Operation(summary = "小说信息查询接口")
+    @GetMapping("book/{bookId}")
+    public RestResp<BookInfoRespDto> getBookInfo(
+            @Parameter(description = "小说 ID") @PathVariable("bookId") Long bookId) {
+        return bookService.getBookById(bookId);
+    }
+
+    /**
+     * 小说信息更新接口
+     */
+    @Operation(summary = "小说信息更新接口")
+    @PutMapping("book/{bookId}")
+    public RestResp<Void> updateBook(
+            @Parameter(description = "小说ID") @PathVariable("bookId") Long bookId,
+            @Valid @RequestBody BookUpdateReqDto dto) {
+        return bookService.updateBook(bookId, dto);
+    }
+
+    /**
+     * 小说删除接口
+     */
+    @Operation(summary = "小说删除接口")
+    @DeleteMapping("book/{bookId}")
+    public RestResp<Void> deleteBook(
+            @Parameter(description = "小说ID") @PathVariable("bookId") Long bookId) {
+        return bookService.deleteBook(bookId);
+    }
+
+    /**
+     * 作家订阅列表查询接口
+     */
+    @Operation(summary = "作家订阅列表查询接口")
+    @GetMapping("subscribe/list")
+    public RestResp<PageRespDto<AuthorIncomeDetailRespDto>> listAuthorSubscribeDetails(@ParameterObject PageReqDto dto) {
+        return authorService.listAuthorSubscribeDetails(dto);
+    }
+
+    /**
+     * 作家稿费列表查询接口
+     */
+    @Operation(summary = "作家稿费列表查询接口")
+    @GetMapping("income/list")
+    public RestResp<PageRespDto<AuthorIncomeRespDto>> listAuthorIncomes(@ParameterObject PageReqDto dto) {
+        return authorService.listAuthorIncomes(dto);
     }
 
 }

@@ -68,6 +68,11 @@ public class ApiRouterConsts {
     public static final String AI_URL_PREFIX = "/ai";
 
     /**
+     * 支付模块请求路径前缀
+     */
+    public static final String PAY_URL_PREFIX = "/pay";
+
+    /**
      * 前台门户首页API请求路径前缀
      */
     public static final String API_FRONT_HOME_URL_PREFIX = API_FRONT_URL_PREFIX + HOME_URL_PREFIX;
@@ -98,6 +103,11 @@ public class ApiRouterConsts {
      */
     public static final String API_FRONT_SEARCH_URL_PREFIX =
         API_FRONT_URL_PREFIX + SEARCH_URL_PREFIX;
+
+    /**
+     * 前台门户支付相关API请求路径前缀
+     */
+    public static final String API_FRONT_PAY_URL_PREFIX = API_FRONT_URL_PREFIX + PAY_URL_PREFIX;
 
     /**
      * 作家后台AI相关API请求路径前缀

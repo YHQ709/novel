@@ -25,6 +25,11 @@ public class BookInfoRespDto {
     private Long id;
 
     /**
+     * 作品方向;0-男频 1-女频
+     */
+    private Integer workDirection;
+
+    /**
      * 类别ID
      */
     @Schema(description = "类别ID")
